@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: soltymwork/travnica
   branch: main
+  base_url: https://auth.sveltia.org
+  auth_endpoint: /authenticate
 
 media_folder: "images"
 public_folder: "images"
