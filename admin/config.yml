@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "aktuality"
+    label: "Aktuality"
+    folder: "content/aktuality"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Titulok", name: "title", widget: "string"}
+      - {label: "Dátum", name: "date", widget: "datetime"}
+      - {label: "Kategória", name: "category", widget: "select", options: ["Kultúra", "Turistika", "Samospráva", "Infraštruktúra", "Príroda"]}
+      - {label: "Krátky popis", name: "description", widget: "text"}
+      - {label: "Telo článku", name: "body", widget: "markdown"}
+
+  - name: "pamiatky"
+    label: "Pamiatky"
+    folder: "content/pamiatky"
+    create: true
+    fields:
+      - {label: "Názov pamiatky", name: "title", widget: "string"}
+      - {label: "Obrázok", name: "image", widget: "image"}
+      - {label: "Popis", name: "body", widget: "markdown"}
