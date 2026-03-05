@@ -23,7 +23,7 @@ content:
         type: text
       - name: body
         label: Telo článku
-        type: markdown
+        type: rich-text
 
   - name: pamiatky
     label: Pamiatky
@@ -45,7 +45,7 @@ content:
         type: image
       - name: body
         label: Popis
-        type: markdown
+        type: rich-text
 
   - name: o_obci
     label: O obci
@@ -54,7 +54,7 @@ content:
     fields:
       - name: body
         label: Text o obci
-        type: markdown
+        type: rich-text
 
   - name: historia
     label: História (Časová os)
@@ -82,7 +82,7 @@ content:
     fields:
       - name: body
         label: Text o prírode
-        type: markdown
+        type: rich-text
 
   - name: kontakt
     label: Kontakt a Údaje
