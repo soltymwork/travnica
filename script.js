@@ -131,18 +131,24 @@ async function loadCMSContent() {
 
   for (const el of cmsElements) {
     const id = el.dataset.cmsId;
-    const type = el.dataset.cmsType || 'md'; // md or json
+    const type = el.dataset.cmsType || 'md'; // md, json, or collection
 
     try {
+      if (type === 'collection') {
+        renderCollection(el, id);
+        continue;
+      }
+
       const response = await fetch(`content/${id}.${type}`);
       if (!response.ok) continue;
 
       if (type === 'md') {
         const text = await response.text();
+        const cleanContent = text.replace(/^---[\s\S]*?---/, '').trim();
         if (typeof marked !== 'undefined') {
-          el.innerHTML = marked.parse(text);
+          el.innerHTML = marked.parse(cleanContent);
         } else {
-          el.textContent = text;
+          el.textContent = cleanContent;
         }
       } else if (type === 'json') {
         const data = await response.json();
@@ -152,6 +158,97 @@ async function loadCMSContent() {
       console.warn(`Failed to load CMS content for ${id}:`, err);
     }
   }
+}
+
+async function renderCollection(container, collectionId) {
+  // Manifest listing for static site compatibility
+  const manifest = {
+    'aktuality': ['vikend-parkov-2025', 'naucny-chodnik', 'hospodarenie-2024', 'rekonstrukcia', 'den-travnice', 'brigada-jazero'],
+    'pamiatky': ['kostol', 'kastiele', 'studna', 'kaplnka']
+  };
+
+  const files = manifest[collectionId] || [];
+  const grid = container.querySelector('.news-grid') || container.querySelector('.attractions-grid') || container;
+
+  let html = '';
+  for (const file of files) {
+    try {
+      const res = await fetch(`content/${collectionId}/${file}.md`);
+      if (!res.ok) continue;
+      const text = await res.text();
+      const fm = parseFrontMatter(text);
+
+      if (collectionId === 'aktuality') {
+        html += renderNewsCard(fm);
+      } else if (collectionId === 'pamiatky') {
+        html += renderAttractionCard(fm, files.indexOf(file) < 2);
+      }
+    } catch (e) { console.error(e); }
+  }
+  if (html) grid.innerHTML = html;
+}
+
+function parseFrontMatter(text) {
+  const fmMatch = text.match(/^---([\s\S]*?)---/);
+  const data = {};
+  if (fmMatch) {
+    const lines = fmMatch[1].split('\n');
+    lines.forEach(line => {
+      const parts = line.split(':');
+      if (parts.length >= 2) {
+        const key = parts[0].trim();
+        const val = parts.slice(1).join(':').trim();
+        data[key] = val;
+      }
+    });
+  }
+  data.body = text.replace(/^---[\s\S]*?---/, '').trim();
+  return data;
+}
+
+function renderNewsCard(data) {
+  const dateStr = data.date || new Date().toISOString().split('T')[0];
+  const date = new Date(dateStr);
+  const day = date.getDate();
+  const month = date.toLocaleString('sk', { month: 'short' }).replace('.', '');
+  const year = date.getFullYear();
+
+  return `
+    <article class="news-card">
+      <div class="news-date">
+        <span class="nd-day">${day}</span>
+        <span class="nd-month">${month} ${year}</span>
+      </div>
+      <div class="news-body">
+        <span class="news-cat">${data.category || 'Všeobecné'}</span>
+        <h3>${data.title}</h3>
+        <p>${data.description || ''}</p>
+        <a href="#" class="news-link">Čítať viac →</a>
+      </div>
+    </article>
+  `;
+}
+
+function renderAttractionCard(data, isFeatured) {
+  return `
+    <div class="attraction-card ${isFeatured ? 'featured' : ''}">
+        <div class="attraction-img-wrap">
+            ${data.image ? `<img src="${data.image}" alt="${data.title}" />` : `
+            <div class="photo-placeholder">
+                <div class="ph-inner">
+                    <span class="ph-icon">🏛️</span>
+                    <span class="ph-label">${data.title}</span>
+                </div>
+            </div>`}
+            <div class="attraction-badge">${data.badge || 'Pamiatka'}</div>
+        </div>
+        <div class="attraction-body">
+            <h3>${data.title}</h3>
+            ${typeof marked !== 'undefined' ? marked.parse(data.body) : `<p>${data.body}</p>`}
+            <span class="attraction-year">${data.year || ''}</span>
+        </div>
+    </div>
+  `;
 }
 
 function renderJSONContent(el, id, data) {
@@ -181,7 +278,6 @@ function renderJSONContent(el, id, data) {
         ${index < data.stats.length - 1 ? '<div class="stat-divider"></div>' : ''}
       `).join('');
 
-      // Re-trigger counter animation
       statsInner.querySelectorAll('.stat-number').forEach(el => {
         animateCounter(el, parseInt(el.dataset.count, 10));
       });
