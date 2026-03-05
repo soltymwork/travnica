@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -48,42 +48,42 @@
 
     <section id="kontakt" class="section">
         <div class="container">
-            <div class="contact-grid">
+            <div class="contact-grid" data-cms-id="kontakt" data-cms-type="json">
                 <div class="contact-info">
                     <div class="ci-item">
                         <span class="ci-icon">🏛️</span>
                         <div>
                             <strong>Obecný úrad Trávnica</strong>
-                            <p>Trávnica, 941 62, Nitriansky kraj</p>
+                            <p data-field="address">Trávnica, 941 62, Nitriansky kraj</p>
                         </div>
                     </div>
                     <div class="ci-item">
                         <span class="ci-icon">📞</span>
                         <div>
                             <strong>Telefón</strong>
-                            <p>+421 35 000 0000</p>
+                            <p data-field="phone">+421 35 000 0000</p>
                         </div>
                     </div>
                     <div class="ci-item">
                         <span class="ci-icon">✉️</span>
                         <div>
                             <strong>E-mail</strong>
-                            <p>obec@travnica.sk</p>
+                            <p data-field="email">obec@travnica.sk</p>
                         </div>
                     </div>
                     <div class="ci-item">
                         <span class="ci-icon">🕐</span>
                         <div>
                             <strong>Úradné hodiny</strong>
-                            <p>Po–Pi: 8:00 – 15:00</p>
+                            <p data-field="hours">Po–Pi: 8:00 – 15:00</p>
                         </div>
                     </div>
                     <div class="ci-item">
                         <span class="ci-icon">🌐</span>
                         <div>
                             <strong>Web</strong>
-                            <p><a href="https://www.obectravnica.sk" target="_blank"
-                                    rel="noopener">www.obectravnica.sk</a></p>
+                            <p><a href="https://www.obectravnica.sk" target="_blank" rel="noopener"
+                                    data-field="website">www.obectravnica.sk</a></p>
                         </div>
                     </div>
                 </div>

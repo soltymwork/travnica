@@ -25,7 +25,7 @@ hamburger.addEventListener('click', () => {
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     navLinks.classList.remove('open');
-    hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity='1'; });
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
   });
 });
 
@@ -125,3 +125,80 @@ window.addEventListener('scroll', () => {
     heroImg.style.transform = `scale(1.0) translateY(${window.scrollY * 0.3}px)`;
   }
 }, { passive: true });
+/* ===== CMS CONTENT LOADING ===== */
+async function loadCMSContent() {
+  const cmsElements = document.querySelectorAll('[data-cms-id]');
+
+  for (const el of cmsElements) {
+    const id = el.dataset.cmsId;
+    const type = el.dataset.cmsType || 'md'; // md or json
+
+    try {
+      const response = await fetch(`content/${id}.${type}`);
+      if (!response.ok) continue;
+
+      if (type === 'md') {
+        const text = await response.text();
+        if (typeof marked !== 'undefined') {
+          el.innerHTML = marked.parse(text);
+        } else {
+          el.textContent = text;
+        }
+      } else if (type === 'json') {
+        const data = await response.json();
+        renderJSONContent(el, id, data);
+      }
+    } catch (err) {
+      console.warn(`Failed to load CMS content for ${id}:`, err);
+    }
+  }
+}
+
+function renderJSONContent(el, id, data) {
+  if (id === 'kontakt') {
+    const addressEl = el.querySelector('[data-field="address"]');
+    const phoneEl = el.querySelector('[data-field="phone"]');
+    const emailEl = el.querySelector('[data-field="email"]');
+    const hoursEl = el.querySelector('[data-field="hours"]');
+    const webEl = el.querySelector('[data-field="website"]');
+
+    if (addressEl) addressEl.textContent = data.address;
+    if (phoneEl) phoneEl.textContent = data.phone;
+    if (emailEl) emailEl.textContent = data.email;
+    if (hoursEl) hoursEl.textContent = data.hours;
+    if (webEl) {
+      webEl.textContent = data.website;
+      webEl.href = `https://${data.website}`;
+    }
+  } else if (id === 'index') {
+    const statsInner = el.querySelector('.stats-inner');
+    if (data.stats && statsInner) {
+      statsInner.innerHTML = data.stats.map((stat, index) => `
+        <div class="stat-item">
+          <span class="stat-number" data-count="${stat.number}">${stat.number}</span>
+          <span class="stat-label">${stat.label}</span>
+        </div>
+        ${index < data.stats.length - 1 ? '<div class="stat-divider"></div>' : ''}
+      `).join('');
+
+      // Re-trigger counter animation
+      statsInner.querySelectorAll('.stat-number').forEach(el => {
+        animateCounter(el, parseInt(el.dataset.count, 10));
+      });
+    }
+  } else if (id === 'historia') {
+    const timeline = el.querySelector('.timeline') || el;
+    timeline.innerHTML = data.map((item, index) => `
+      <div class="tl-item ${index % 2 !== 0 ? 'right' : ''}">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <span class="tl-year">${item.year}</span>
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCMSContent);
