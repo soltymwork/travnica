@@ -1,0 +1,122 @@
+media:
+  path: images
+
+content:
+  - name: aktuality
+    label: Aktuality
+    type: collection
+    path: content/aktuality
+    format: md
+    fields:
+      - name: title
+        label: Titulok
+        type: string
+      - name: date
+        label: Dátum
+        type: date
+      - name: category
+        label: Kategória
+        type: select
+        options: ["Kultúra", "Turistika", "Samospráva", "Infraštruktúra", "Príroda"]
+      - name: description
+        label: Krátky popis
+        type: text
+      - name: body
+        label: Telo článku
+        type: markdown
+
+  - name: pamiatky
+    label: Pamiatky
+    type: collection
+    path: content/pamiatky
+    format: md
+    fields:
+      - name: title
+        label: Názov pamiatky
+        type: string
+      - name: image
+        label: Obrázok
+        type: image
+      - name: body
+        label: Popis
+        type: markdown
+
+  - name: o_obci
+    label: O obci
+    type: file
+    path: content/o-obci.md
+    fields:
+      - name: body
+        label: Text o obci
+        type: markdown
+
+  - name: historia
+    label: História (Časová os)
+    type: file
+    path: content/historia.json
+    format: json
+    fields:
+      - name: entries
+        label: Zoznam udalostí
+        type: list
+        fields:
+          - name: year
+            label: Rok / Obdobie
+            type: string
+          - name: title
+            label: Titulok udalosti
+            type: string
+          - name: description
+            label: Popis udalosti
+            type: text
+
+  - name: priroda
+    label: Príroda
+    type: file
+    path: content/priroda.md
+    fields:
+      - name: body
+        label: Text o prírode
+        type: markdown
+
+  - name: kontakt
+    label: Kontakt a Údaje
+    type: file
+    path: content/kontakt.json
+    format: json
+    fields:
+      - name: address
+        label: Adresa úradu
+        type: string
+      - name: phone
+        label: Telefón
+        type: string
+      - name: email
+        label: E-mail
+        type: string
+      - name: hours
+        label: Úradné hodiny
+        type: string
+      - name: website
+        label: Webová adresa
+        type: string
+      - name: facebook
+        label: Facebook link
+        type: string
+
+  - name: domov
+    label: Domovská stránka (Štatistiky)
+    type: file
+    path: content/index.json
+    format: json
+    fields:
+      - name: stats
+        label: Štatistiky
+        type: list
+        fields:
+          - name: number
+            label: Číslo
+            type: string
+          - name: label
+            label: Popis
+            type: string
