@@ -28,5 +28,56 @@ collections:
     create: true
     fields:
       - {label: "Názov pamiatky", name: "title", widget: "string"}
-      - {label: "Obrázok", name: "image", widget: "image"}
+      - {label: "Odznak/Kategória", name: "badge", widget: "string"}
+      - {label: "Rok/Obdobie", name: "year", widget: "string"}
+      - {label: "Obrázok", name: "image", widget: "image", required: false}
       - {label: "Popis", name: "body", widget: "markdown"}
+
+  - name: "stranky"
+    label: "Všeobecné stránky"
+    files:
+      - file: "content/o-obci.md"
+        label: "O obci"
+        name: "o_obci"
+        fields:
+          - {label: "Text o obci", name: "body", widget: "markdown"}
+          
+      - file: "content/priroda.md"
+        label: "Príroda"
+        name: "priroda"
+        fields:
+          - {label: "Text o prírode", name: "body", widget: "markdown"}
+          
+      - file: "content/historia.json"
+        label: "História (Časová os)"
+        name: "historia"
+        fields:
+          - label: "Zoznam udalostí"
+            name: "entries"
+            widget: "list"
+            fields:
+              - {label: "Rok / Obdobie", name: "year", widget: "string"}
+              - {label: "Titulok udalosti", name: "title", widget: "string"}
+              - {label: "Popis udalosti", name: "description", widget: "text"}
+              
+      - file: "content/kontakt.json"
+        label: "Kontakt a Údaje"
+        name: "kontakt"
+        fields:
+          - {label: "Adresa úradu", name: "address", widget: "string"}
+          - {label: "Telefón", name: "phone", widget: "string"}
+          - {label: "E-mail", name: "email", widget: "string"}
+          - {label: "Úradné hodiny", name: "hours", widget: "string"}
+          - {label: "Webová adresa", name: "website", widget: "string"}
+          - {label: "Facebook link", name: "facebook", widget: "string"}
+          
+      - file: "content/index.json"
+        label: "Domovská stránka (Štatistiky)"
+        name: "domov"
+        fields:
+          - label: "Štatistiky"
+            name: "stats"
+            widget: "list"
+            fields:
+              - {label: "Číslo", name: "number", widget: "string"}
+              - {label: "Popis", name: "label", widget: "string"}
