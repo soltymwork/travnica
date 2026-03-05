@@ -13,7 +13,7 @@ content:
         type: string
       - name: date
         label: Dátum
-        type: date
+        type: string
       - name: category
         label: Kategória
         type: select
@@ -33,6 +33,12 @@ content:
     fields:
       - name: title
         label: Názov pamiatky
+        type: string
+      - name: badge
+        label: Odznak/Kategória
+        type: string
+      - name: year
+        label: Rok/Obdobie
         type: string
       - name: image
         label: Obrázok
@@ -54,20 +60,19 @@ content:
     label: História (Časová os)
     type: file
     path: content/historia.json
-    format: json
     fields:
       - name: entries
         label: Zoznam udalostí
         type: list
         fields:
           - name: year
-            label: Rok / Obdobie
+            label: Rok
             type: string
           - name: title
-            label: Titulok udalosti
+            label: Udalosť
             type: string
           - name: description
-            label: Popis udalosti
+            label: Popis
             type: text
 
   - name: priroda
@@ -83,7 +88,6 @@ content:
     label: Kontakt a Údaje
     type: file
     path: content/kontakt.json
-    format: json
     fields:
       - name: address
         label: Adresa úradu
@@ -108,7 +112,6 @@ content:
     label: Domovská stránka (Štatistiky)
     type: file
     path: content/index.json
-    format: json
     fields:
       - name: stats
         label: Štatistiky
