@@ -45,98 +45,10 @@
         </div>
     </div>
 
-    <section class="section">
+    <section class="section" data-cms-id="pamiatky" data-cms-type="collection">
         <div class="container">
             <div class="attractions-grid">
-                <div class="attraction-card featured">
-                    <div class="attraction-img-wrap">
-                        <!-- FOTO: Fotografia kostola Najsvätejšej Trojice -->
-                        <!-- Príklad: <img src="images/kostol.jpg" alt="Kostol Najsvätejšej Trojice" /> -->
-                        <div class="photo-placeholder">
-                            <div class="ph-inner">
-                                <span class="ph-icon">⛪</span>
-                                <span class="ph-label">Kostol Najsvätejšej Trojice</span>
-                                <span class="ph-hint">1920 × 1080 px</span>
-                            </div>
-                        </div>
-                        <div class="attraction-badge">Sakrálna pamiatka</div>
-                    </div>
-                    <div class="attraction-body">
-                        <h3>Kostol Najsvätejšej Trojice</h3>
-                        <p>Rímskokatolícky kostol v barokovom štýle postavený v roku <strong>1740</strong>. Dominanta
-                            obce s impozantnou vežou. Kostol bol postavený v rovnakom roku ako neskorobarokový kaštieľ
-                            Rudnyianskych – roku 1740 bol teda pre obec mimoriadne významný.</p>
-                        <p>Kostol dopĺňa <strong>Kaplnka Nanebovstúpenia Pána</strong> z roku 1714, ktorá je ešte
-                            staršou sakrálnou pamiatkou obce.</p>
-                        <span class="attraction-year">od 1740</span>
-                    </div>
-                </div>
-
-                <div class="attraction-card featured">
-                    <div class="attraction-img-wrap">
-                        <!-- FOTO: Fotografia kaštieľa -->
-                        <!-- Príklad: <img src="images/kastiel.jpg" alt="Kaštieľ v Trávnici" /> -->
-                        <div class="photo-placeholder">
-                            <div class="ph-inner">
-                                <span class="ph-icon">🏰</span>
-                                <span class="ph-label">Kaštieľ obce</span>
-                                <span class="ph-hint">1200 × 800 px</span>
-                            </div>
-                        </div>
-                        <div class="attraction-badge">Architektúra</div>
-                    </div>
-                    <div class="attraction-body">
-                        <h3>Päť historických kaštieľov</h3>
-                        <p>V Trávnici sa nachádzalo celkovo <strong>päť kaštieľov</strong>, čo svedčí o významnosti obce
-                            v minulosti. Neskorobarokový kaštieľ rodiny Rudnyianskych bol postavený v roku 1740 rodinou
-                            Bencsikovcov. Po rekonštrukcii je dnes v súkromnom vlastníctve.</p>
-                        <p>Ďalšie kaštiele patrili rodine <strong>Baloghovcov</strong> a <strong>Ladislavovi
-                                Barlanghyimu</strong>, podľa ktorého je pomenovaný aj historický park obce.</p>
-                        <span class="attraction-year">5 kaštieľov</span>
-                    </div>
-                </div>
-
-                <div class="attraction-card">
-                    <div class="attraction-img-wrap">
-                        <!-- FOTO: Fotografia veternej studne -->
-                        <!-- Príklad: <img src="images/veterná-studna.jpg" alt="Veterná studňa" /> -->
-                        <div class="photo-placeholder">
-                            <div class="ph-inner">
-                                <span class="ph-icon">💨</span>
-                                <span class="ph-label">Veterná studňa (1920)</span>
-                                <span class="ph-hint">1200 × 800 px</span>
-                            </div>
-                        </div>
-                        <div class="attraction-badge">Technická pamiatka</div>
-                    </div>
-                    <div class="attraction-body">
-                        <h3>Veterná studňa</h3>
-                        <p>Unikátna technická pamiatka z roku <strong>1920</strong>. Veterné koleso poháňalo čerpadlo na
-                            zásobovanie obce vodou. Pôvodné koleso bolo darované Slovenskému technickému múzeu v
-                            Košiciach. Replika originálneho kolesa bola osadená v roku 2018.</p>
-                        <span class="attraction-year">od 1920</span>
-                    </div>
-                </div>
-
-                <div class="attraction-card">
-                    <div class="attraction-img-wrap">
-                        <div class="photo-placeholder">
-                            <div class="ph-inner">
-                                <span class="ph-icon">⛩️</span>
-                                <span class="ph-label">Kaplnka Nanebovstúpenia Pána</span>
-                                <span class="ph-hint">1200 × 800 px</span>
-                            </div>
-                        </div>
-                        <div class="attraction-badge">Sakrálna pamiatka</div>
-                    </div>
-                    <div class="attraction-body">
-                        <h3>Kaplnka Nanebovstúpenia Pána</h3>
-                        <p>Kaplnka z roku <strong>1714</strong> je jednou z najstarších sakrálnych stavieb v obci,
-                            staršia ako samotný farský kostol. Je dôkazom náboženskej tradície obce siahajúcej stáročia
-                            do minulosti.</p>
-                        <span class="attraction-year">od 1714</span>
-                    </div>
-                </div>
+                <!-- Dynamically loaded from content/pamiatky/ -->
             </div>
         </div>
     </section>
@@ -187,7 +99,7 @@
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop" aria-label="Späť hore">↑</a>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
