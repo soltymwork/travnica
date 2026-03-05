@@ -188,7 +188,8 @@ function renderJSONContent(el, id, data) {
     }
   } else if (id === 'historia') {
     const timeline = el.querySelector('.timeline') || el;
-    timeline.innerHTML = data.map((item, index) => `
+    const entries = data.entries || data;
+    timeline.innerHTML = entries.map((item, index) => `
       <div class="tl-item ${index % 2 !== 0 ? 'right' : ''}">
         <div class="tl-dot"></div>
         <div class="tl-card">
