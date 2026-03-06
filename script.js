@@ -206,8 +206,10 @@ function renderJSONContent(el, id, data) {
         if (f === 'website') item.href = `https://${data[f]}`;
       }
     });
+
   } else if (id === 'index' && data.stats) {
     const inner = el.querySelector('.stats-inner');
+    if (!inner) return;
     inner.innerHTML = data.stats.map((s, i) => `
       <div class="stat-item">
         <span class="stat-number" data-count="${s.number}">${s.number}</span>
@@ -215,6 +217,7 @@ function renderJSONContent(el, id, data) {
       </div>
       ${i < data.stats.length - 1 ? '<div class="stat-divider"></div>' : ''}`).join('');
     inner.querySelectorAll('.stat-number').forEach(s => animateCounter(s, parseInt(s.dataset.count)));
+
   } else if (id === 'historia') {
     const tl = el.querySelector('.timeline') || el;
     tl.innerHTML = (data.entries || []).map((item, i) => `
@@ -226,6 +229,102 @@ function renderJSONContent(el, id, data) {
           <p>${item.description}</p>
         </div>
       </div>`).join('');
+
+  } else if ((id === 'o-obci-cards' || id === 'priroda-cards') && data.cards) {
+    el.innerHTML = data.cards.map(c => `
+      <div class="about-card">
+        <div class="about-icon">${c.icon}</div>
+        <h3>${c.title}</h3>
+        <p>${c.text}</p>
+      </div>`).join('');
+    initReveals();
+
+  } else if (id === 'hero') {
+    const heroContent = el.querySelector('.hero-content');
+    if (heroContent) {
+      heroContent.querySelector('.hero-eyebrow').textContent = data.eyebrow || '';
+      heroContent.querySelector('.hero-title').textContent = data.title || '';
+      const subtitle = heroContent.querySelector('.hero-subtitle');
+      if (subtitle) {
+        subtitle.innerHTML = `${data.subtitle || ''}<br />Prvá zmienka: <strong>${data.highlight || ''}</strong>`;
+      }
+      const badges = heroContent.querySelector('.hero-badges');
+      if (badges && data.badges) {
+        badges.innerHTML = data.badges.map(b => `<span class="badge">${b}</span>`).join('');
+      }
+      const cta = heroContent.querySelector('.btn-primary');
+      if (cta) {
+        cta.textContent = data.cta_text || 'Spoznajte nás';
+        cta.href = data.cta_link || 'o-obci.html';
+      }
+    }
+
+  } else if (id === 'quicklinks' && data.links) {
+    const header = el.querySelector('.section-header');
+    if (header) {
+      header.querySelector('.section-tag').textContent = data.tag || '';
+      header.querySelector('h2').textContent = data.title || '';
+    }
+    const grid = el.querySelector('.quicklinks-grid');
+    if (grid) {
+      grid.innerHTML = data.links.map(l => `
+        <a href="${l.url}" class="ql-card">
+          <span class="ql-icon">${l.icon}</span>
+          <h3>${l.title}</h3>
+          <p>${l.text}</p>
+          <span class="ql-arrow">→</span>
+        </a>`).join('');
+    }
+
+  } else if (id === 'priroda-list' && data.features) {
+    el.innerHTML = data.features.map(f => `
+      <li>
+        <span class="nl-icon">${f.icon}</span>
+        <div>
+          <strong>${f.title}</strong>
+          <p>${f.text}</p>
+        </div>
+      </li>`).join('');
+    initReveals();
+
+  } else if (id === 'footer') {
+    const inner = el.querySelector('.footer-inner');
+    if (!inner) return;
+    inner.innerHTML = `
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon">⚜</span>
+          <span class="footer-name">Obec Trávnica</span>
+          <p>${data.brand_text || ''}</p>
+          <div class="footer-social">
+            ${data.facebook_url ? `<a href="${data.facebook_url}" target="_blank" rel="noopener" class="social-link" title="Facebook">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+              </svg>
+            </a>` : ''}
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <h4>Navigácia</h4>
+          <ul>
+            <li><a href="o-obci.html">O obci</a></li>
+            <li><a href="historia.html">História</a></li>
+            <li><a href="pamiatky.html">Pamiatky</a></li>
+            <li><a href="priroda.html">Príroda</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Užitočné linky</h4>
+          <ul>
+            ${(data.useful_links || []).map(l => `<li><a href="${l.url}" target="_blank" rel="noopener">${l.title}</a></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>${data.copyright || ''}</p>
+        <p>${data.credit || ''}</p>
+      </div>`;
   }
 }
 

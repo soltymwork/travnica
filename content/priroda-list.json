@@ -1,0 +1,24 @@
+{
+  "features": [
+    {
+      "icon": "🏞️",
+      "title": "Jazero Táňa (Nový rybník Trávnica)",
+      "text": "Obľúbené miesto pre prechádzky, rybolov a vodné aktivity. Jazero Táňa je ideálnym cieľom výletu pre celú rodinu."
+    },
+    {
+      "icon": "🌿",
+      "title": "Barlanghyiho park",
+      "text": "Historický park, kde sa každoročne koná podujatie „Víkend otvorených parkov a záhrad\". Park nesie meno šľachtica Ladislava Barlanghyiho."
+    },
+    {
+      "icon": "🧭",
+      "title": "Náučný chodník",
+      "text": "Náučný chodník „História a súčasnosť obce Trávnica\" so 24 informačnými panelmi prezentuje historické, prírodné a súčasné zaujímavosti obce."
+    },
+    {
+      "icon": "🌳",
+      "title": "Lesy okolia",
+      "text": "Okolie obce pokrývajú prevažne dubové, bukové a agátové lesy, vhodné na prechádzky a turistiku po celý rok."
+    }
+  ]
+}

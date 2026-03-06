@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "icon": "📍",
+      "title": "Poloha",
+      "text": "Obec leží asi 30 km severovýchodne od Nových Zámkov v klimaticky teplej a suchej oblasti Podunajskej nížiny."
+    },
+    {
+      "icon": "🌳",
+      "title": "Príroda",
+      "text": "Okolie obce pokrývajú prevažne dubové, bukové a agátové lesy. Nájdete tu aj dve vodné nádrže vrátane jazera Táňa."
+    },
+    {
+      "icon": "🏛️",
+      "title": "Kultúra",
+      "text": "Obec sa môže pochváliť päťimi historickými kaštieľmi, barokovým kostolom, kaplnkou a technickou pamiatkou – veternou studňou."
+    },
+    {
+      "icon": "🚶",
+      "title": "Turistika",
+      "text": "Náučný chodník s 24 informačnými panelmi vás prevedie históriou, prírodou a súčasnosťou obce Trávnica."
+    },
+    {
+      "icon": "🌾",
+      "title": "Hospodárstvo",
+      "text": "Obyvatelia sa tradične zaoberali poľnohospodárstvom, vinohradníctvom, chovom koní a dobytka."
+    },
+    {
+      "icon": "☀️",
+      "title": "Klíma",
+      "text": "Trávnica patrí do teplej a suchej klimatickej oblasti, typickej pre Podunajskú nížinu."
+    }
+  ]
+}

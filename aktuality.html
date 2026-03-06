@@ -55,53 +55,14 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" data-cms-id="footer" data-cms-type="json">
         <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="logo-icon">⚜</span>
-                    <span class="footer-name">Obec Trávnica</span>
-                    <p>Historická obec s prvou zmienkou z roku 1075. Pyšní sa bohatou históriou, barokovými pamiatkami a
-                        krásnou prírodou.</p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/dedinatravnica" target="_blank" rel="noopener"
-                            class="social-link" title="Facebook">
-                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Navigácia</h4>
-                    <ul>
-                        <li><a href="o-obci.html">O obci</a></li>
-                        <li><a href="historia.html">História</a></li>
-                        <li><a href="pamiatky.html">Pamiatky</a></li>
-                        <li><a href="priroda.html">Príroda</a></li>
-                        <li><a href="kontakt.html">Kontakt</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-col">
-                    <h4>Užitočné linky</h4>
-                    <ul>
-                        <li><a href="https://www.obectravnica.sk" target="_blank" rel="noopener">Obectravnica.sk</a>
-                        </li>
-                        <li><a href="https://www.novezamky.sk" target="_blank" rel="noopener">Nové Zámky</a></li>
-                        <li><a href="https://www.minv.sk" target="_blank" rel="noopener">Ministerstvo vnútra SR</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Obec Trávnica | Všetky práva vyhradené</p>
-                <p>Vytvorené s ❤️ pre obec Trávnica</p>
-            </div>
+            <!-- Dynamically loaded from content/footer.json -->
         </div>
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop" aria-label="Späť hore">↑</a>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=5"></script>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
