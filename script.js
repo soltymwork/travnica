@@ -99,46 +99,65 @@ async function loadCMSContent() {
 }
 
 async function renderCollection(container, collectionId) {
-  const user = 'soltymwork';
-  const repo = 'travnica';
-  const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/content/${collectionId}`;
+  const basePath = `content/${collectionId}`;
   const grid = container.querySelector('.news-grid') || container.querySelector('.attractions-grid') || container;
 
   try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('API failed');
-    const files = await response.json();
-    const validFiles = files.filter(f => f.name.endsWith('.md'));
+    /* 1. Fetch manifest (no GitHub API needed — served from GitHub Pages) */
+    const manifestRes = await fetch(`${basePath}/_manifest.json`);
+    if (!manifestRes.ok) throw new Error('Manifest not found');
+    const fileList = await manifestRes.json();
 
-    let html = '';
-    for (const file of validFiles) {
-      const res = await fetch(file.download_url);
+    /* 2. Fetch each .md file directly from GitHub Pages */
+    const items = [];
+    for (const filename of fileList) {
+      const res = await fetch(`${basePath}/${filename}`);
       if (!res.ok) continue;
       const text = await res.text();
       const fm = parseFrontMatter(text);
+      fm._filename = filename;
+      items.push(fm);
+    }
 
+    /* 3. Sort aktuality by date (newest first) */
+    if (collectionId === 'aktuality') {
+      items.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+    }
+
+    /* 4. Render */
+    let html = '';
+    items.forEach((fm, i) => {
       if (collectionId === 'aktuality') {
         html += renderNewsCard(fm);
       } else if (collectionId === 'pamiatky') {
-        html += renderAttractionCard(fm, validFiles.indexOf(file) < 2);
+        html += renderAttractionCard(fm, i < 2);
       }
-    }
+    });
+
     if (html) {
       grid.innerHTML = html;
       initReveals();
     }
   } catch (err) {
-    console.error(err);
+    console.error('Collection load error:', err);
   }
 }
 
 function parseFrontMatter(text) {
-  const fmMatch = text.match(/^---([\s\S]*?)---/);
+  const fmMatch = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   const data = {};
   if (fmMatch) {
     fmMatch[1].split('\n').forEach(line => {
-      const p = line.split(':');
-      if (p.length >= 2) data[p[0].trim()] = p.slice(1).join(':').trim();
+      const clean = line.replace(/\r$/, '');
+      const idx = clean.indexOf(':');
+      if (idx < 1) return;
+      const key = clean.slice(0, idx).trim();
+      let val = clean.slice(idx + 1).trim();
+      /* Strip surrounding quotes */
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      data[key] = val;
     });
   }
   data.body = text.replace(/^---[\s\S]*?---/, '').trim();
