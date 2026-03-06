@@ -105,9 +105,10 @@ ul {
   letter-spacing: 0.01em;
 }
 
-.logo-icon {
-  font-size: 1.4rem;
-  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.6));
+.logo-icon-img {
+  height: 36px;
+  width: auto;
+  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.4));
 }
 
 .nav-links {
@@ -1135,8 +1136,9 @@ ul {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.footer-brand .logo-icon {
-  font-size: 2rem;
+.footer-brand .logo-icon-img {
+  height: 48px;
+  width: auto;
   margin-bottom: 8px;
 }
 
