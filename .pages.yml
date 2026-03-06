@@ -1,0 +1,316 @@
+media:
+  path: images
+
+content:
+  - name: aktuality
+    label: Aktuality
+    type: collection
+    path: content/aktuality
+    view:
+      fields: [title, date, category]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titulok
+        type: string
+      - name: date
+        label: Dátum
+        type: date
+      - name: category
+        label: Kategória
+        type: select
+        options:
+          values: ["Kultúra", "Turistika", "Samospráva", "Infraštruktúra", "Príroda"]
+      - name: description
+        label: Krátky popis
+        type: text
+      - name: body
+        label: Telo článku
+        type: rich-text
+
+  - name: pamiatky
+    label: Pamiatky
+    type: collection
+    path: content/pamiatky
+    view:
+      fields: [title, badge, year]
+      primary: title
+    fields:
+      - name: title
+        label: Názov pamiatky
+        type: string
+      - name: badge
+        label: Odznak
+        type: string
+      - name: year
+        label: Rok
+        type: string
+      - name: image
+        label: Obrázok
+        type: image
+      - name: body
+        label: Popis
+        type: rich-text
+
+  - name: historia
+    label: História
+    type: collection
+    path: content/historia
+    view:
+      fields: [title, year, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Titulok udalosti
+        type: string
+      - name: year
+        label: Rok / Obdobie
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+      - name: body
+        label: Popis
+        type: rich-text
+
+  - name: o_obci_cards
+    label: O obci – Karty
+    type: collection
+    path: content/o-obci-cards
+    view:
+      fields: [title, icon, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Titulok
+        type: string
+      - name: icon
+        label: Ikona (emoji)
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+      - name: body
+        label: Text
+        type: rich-text
+
+  - name: quicklinks
+    label: Domov – Rýchle odkazy
+    type: collection
+    path: content/quicklinks
+    view:
+      fields: [title, icon, url, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Titulok
+        type: string
+      - name: icon
+        label: Ikona (emoji)
+        type: string
+      - name: url
+        label: URL odkaz
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+      - name: body
+        label: Popis
+        type: rich-text
+
+  - name: stats
+    label: Domov – Štatistiky
+    type: collection
+    path: content/stats
+    view:
+      fields: [number, label, order]
+      primary: label
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: number
+        label: Číslo
+        type: string
+      - name: label
+        label: Popis
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+
+  - name: priroda_features
+    label: Príroda – Zaujímavosti
+    type: collection
+    path: content/priroda-features
+    view:
+      fields: [title, icon, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Názov
+        type: string
+      - name: icon
+        label: Ikona (emoji)
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+      - name: body
+        label: Popis
+        type: rich-text
+
+  - name: priroda_cards
+    label: Príroda – Aktivity
+    type: collection
+    path: content/priroda-cards
+    view:
+      fields: [title, icon, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Titulok
+        type: string
+      - name: icon
+        label: Ikona (emoji)
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+      - name: body
+        label: Text
+        type: rich-text
+
+  - name: footer_links
+    label: Footer – Užitočné linky
+    type: collection
+    path: content/footer-links
+    view:
+      fields: [title, url, order]
+      primary: title
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Názov
+        type: string
+      - name: url
+        label: URL
+        type: string
+      - name: order
+        label: Poradie
+        type: number
+
+  - name: hero
+    label: Domov – Hero sekcia
+    type: file
+    path: content/hero.json
+    fields:
+      - name: eyebrow
+        label: Nadtext
+        type: string
+      - name: title
+        label: Hlavný titulok
+        type: string
+      - name: subtitle
+        label: Podtitulok
+        type: string
+      - name: highlight
+        label: Zvýraznený text (rok)
+        type: string
+      - name: badges
+        label: Odznaky (čiarkou)
+        type: string
+      - name: cta_text
+        label: Text tlačidla
+        type: string
+      - name: cta_link
+        label: Odkaz tlačidla
+        type: string
+
+  - name: o_obci_text
+    label: O obci – Úvodný text
+    type: file
+    path: content/o-obci.md
+    fields:
+      - name: body
+        label: Text o obci
+        type: rich-text
+
+  - name: priroda_text
+    label: Príroda – Úvodný text
+    type: file
+    path: content/priroda.md
+    fields:
+      - name: body
+        label: Text o prírode
+        type: rich-text
+
+  - name: kontakt
+    label: Kontakt – Údaje
+    type: file
+    path: content/kontakt.json
+    fields:
+      - name: address
+        label: Adresa úradu
+        type: string
+      - name: phone
+        label: Telefón
+        type: string
+      - name: email
+        label: E-mail
+        type: string
+      - name: hours
+        label: Úradné hodiny
+        type: string
+      - name: website
+        label: Webová adresa
+        type: string
+      - name: facebook
+        label: Facebook link
+        type: string
+
+  - name: footer_settings
+    label: Footer – Nastavenia
+    type: file
+    path: content/footer-settings.json
+    fields:
+      - name: brand_text
+        label: Popis obce
+        type: text
+      - name: facebook_url
+        label: Facebook URL
+        type: string
+      - name: copyright
+        label: Copyright text
+        type: string
+      - name: credit
+        label: Kredity
+        type: string
