@@ -1,6 +1,6 @@
 ---
 title: Kultúra
-icon: "🏛️"
+icon: 🏛️
 order: 3
 ---
-Obec sa môže pochváliť päťimi historickými kaštieľmi, barokovým kostolom, kaplnkou a technickou pamiatkou – veternou studňou.
+Obec sa môže pochváliť piatimi historickými kaštieľmi, barokovým kostolom, kaplnkou a technickou pamiatkou – veternou studňou.
