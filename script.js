@@ -85,7 +85,7 @@ async function renderCollection(container, collectionId) {
   var basePath = 'content/' + collectionId;
   var grid = container.querySelector('.news-grid') || container.querySelector('.attractions-grid') || container;
   try {
-    var manifestRes = await fetch(basePath + '/_manifest.json');
+    var manifestRes = await fetch(basePath + '/manifest.json');
     if (!manifestRes.ok) { console.warn('No manifest for ' + collectionId); return; }
     var fileList = await manifestRes.json();
     var items = [];
