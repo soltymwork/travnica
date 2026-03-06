@@ -250,7 +250,7 @@ function renderJSONContent(el, id, data) {
       }
       const badges = heroContent.querySelector('.hero-badges');
       if (badges && data.badges) {
-        badges.innerHTML = data.badges.map(b => `<span class="badge">${b}</span>`).join('');
+        badges.innerHTML = data.badges.map(b => `<span class="badge">${typeof b === 'string' ? b : b.badge}</span>`).join('');
       }
       const cta = heroContent.querySelector('.btn-primary');
       if (cta) {
