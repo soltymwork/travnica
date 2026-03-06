@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aktuality | Trávnica</title>
+    <meta name="description"
+        content="Novinky a aktuality z obce Trávnica – kultúrne podujatia, samospráva, turistika." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body>
+
+    <nav id="navbar" class="scrolled">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚜</span>
+                <span class="logo-text">Trávnica</span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="o-obci.html">O Obci</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="pamiatky.html">Pamiatky</a></li>
+                <li><a href="priroda.html">Príroda</a></li>
+                <li><a href="aktuality.html" class="nav-active">Aktuality</a></li>
+                <li><a href="kontakt.html" class="nav-cta">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <span class="section-tag">Novinky</span>
+            <h1>Aktuality z obce</h1>
+            <p>Sledujte dianie v Trávnici</p>
+        </div>
+    </div>
+
+    <section id="aktuality" class="section" data-cms-id="aktuality" data-cms-type="collection">
+        <div class="container">
+            <div class="news-grid">
+                <!-- Dynamically loaded from content/aktuality/ -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand" data-cms-id="footer-settings" data-cms-type="json">
+                    <span class="logo-icon">⚜</span>
+                    <span class="footer-name">Obec Trávnica</span>
+                    <p>Historická obec s prvou zmienkou z roku 1075.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/dedinatravnica" target="_blank" rel="noopener" class="social-link" title="Facebook">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Navigácia</h4>
+                    <ul>
+                        <li><a href="o-obci.html">O obci</a></li>
+                        <li><a href="historia.html">História</a></li>
+                        <li><a href="pamiatky.html">Pamiatky</a></li>
+                        <li><a href="priroda.html">Príroda</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Užitočné linky</h4>
+                    <ul data-cms-id="footer-links" data-cms-type="collection"></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Obec Trávnica</p>
+                <p class="footer-credit">Vytvorené s ❤️ pre obec Trávnica</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Späť hore">↑</a>
+    <script src="script.js?v=1772809519"></script>
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
