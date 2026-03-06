@@ -63,8 +63,8 @@ async function loadCMSContent(){
         }
         else if(id==='stats'){
           var si=el.querySelector('.stats-inner')||el;
-          for(var j=0;j<items.length;j++){var d=items[j];html+='<div class="stat-item"><span class="stat-number" data-count="'+d.number+'">'+d.number+'</span><span class="stat-label">'+(d.label||'')+'</span></div>';if(j<items.length-1)html+='<div class="stat-divider"></div>';}
-          si.innerHTML=html;si.querySelectorAll('.stat-number').forEach(function(s){animateCounter(s,parseInt(s.dataset.count));});continue;
+          for(var j=0;j<items.length;j++){var d=items[j];html+='<div class="stat-item"><span class="stat-number" data-count="'+d.number+'">0</span><span class="stat-label">'+(d.label||'')+'</span></div>';if(j<items.length-1)html+='<div class="stat-divider"></div>';}
+          si.innerHTML=html;continue;
         }
         else if(id==='priroda-features'){
           for(var j=0;j<items.length;j++){var d=items[j];html+='<li><span class="nl-icon">'+(d.icon||'')+'</span><div><strong>'+(d.title||'')+'</strong><p>'+(d.body||'')+'</p></div></li>';}
@@ -112,5 +112,38 @@ async function loadCMSContent(){
       }
     }catch(err){console.error('CMS error ['+id+']:',err);}
   }
+  /* After all CMS content loaded, init scroll animations */
+  initScrollAnimations();
 }
+
+/* ===== SCROLL ANIMATIONS ===== */
+function initScrollAnimations(){
+  /* Stats counter - animate only when scrolled into view */
+  var statsObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.querySelectorAll('.stat-number').forEach(function(s){
+          animateCounter(s,parseInt(s.dataset.count)||0);
+        });
+        statsObs.unobserve(en.target);
+      }
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.stats-bar').forEach(function(el){statsObs.observe(el);});
+
+  /* Timeline items - reveal one by one on scroll */
+  var tlObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add('tl-visible');
+        tlObs.unobserve(en.target);
+      }
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.tl-item').forEach(function(el,i){
+    el.style.transitionDelay=(i*0.1)+'s';
+    tlObs.observe(el);
+  });
+}
+
 document.addEventListener('DOMContentLoaded',loadCMSContent);
