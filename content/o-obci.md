@@ -1,1 +1,0 @@
-Trávnica je malebná obec v okrese **Nové Zámky** v **Nitrianskom kraji**, rozprestierajúca sa v Podunajskej nížine – konkrétne v časti Pohronská pahorkatina. Leží asi 30 km severovýchodne od Nových Zámkov v klimaticky teplej a suchej oblasti.
